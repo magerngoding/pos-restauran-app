@@ -1,8 +1,11 @@
+import 'package:hyper_ui/service/product_service/product_service.dart';
+
 class DummyService {
   List<Map<String, dynamic>> productList = [
     {
       'id': 1,
-      'photo': 'unsplash: Nasi Goreng',
+      'photo':
+          'https://w7.pngwing.com/pngs/480/301/png-transparent-food-dish-main-course-cuisine-garnish-western-recipes-recipe-cooking-snack-thumbnail.png',
       'product_name': 'Nasi Goreng',
       'price': 25000.0,
       'category': 'Makanan',
@@ -10,7 +13,8 @@ class DummyService {
     },
     {
       'id': 2,
-      'photo': 'unsplash: Sate Ayam',
+      'photo':
+          'https://w7.pngwing.com/pngs/480/301/png-transparent-food-dish-main-course-cuisine-garnish-western-recipes-recipe-cooking-snack-thumbnail.png',
       'product_name': 'Sate Ayam',
       'price': 20000.0,
       'category': 'Makanan',
@@ -19,7 +23,8 @@ class DummyService {
     },
     {
       'id': 3,
-      'photo': 'unsplash: Nasi Uduk',
+      'photo':
+          'https://w7.pngwing.com/pngs/480/301/png-transparent-food-dish-main-course-cuisine-garnish-western-recipes-recipe-cooking-snack-thumbnail.png',
       'product_name': 'Nasi Uduk',
       'price': 15000.0,
       'category': 'Makanan',
@@ -27,7 +32,8 @@ class DummyService {
     },
     {
       'id': 4,
-      'photo': 'unsplash: Rendang',
+      'photo':
+          'https://w7.pngwing.com/pngs/480/301/png-transparent-food-dish-main-course-cuisine-garnish-western-recipes-recipe-cooking-snack-thumbnail.png',
       'product_name': 'Rendang',
       'price': 35000.0,
       'category': 'Makanan',
@@ -35,7 +41,8 @@ class DummyService {
     },
     {
       'id': 5,
-      'photo': 'unsplash: Gado-gado',
+      'photo':
+          'https://w7.pngwing.com/pngs/480/301/png-transparent-food-dish-main-course-cuisine-garnish-western-recipes-recipe-cooking-snack-thumbnail.png',
       'product_name': 'Gado-gado',
       'price': 20000.0,
       'category': 'Makanan',
@@ -43,44 +50,55 @@ class DummyService {
     },
     {
       'id': 6,
-      'photo': 'unsplash: Soto',
+      'photo':
+          'https://w7.pngwing.com/pngs/480/301/png-transparent-food-dish-main-course-cuisine-garnish-western-recipes-recipe-cooking-snack-thumbnail.png',
       'product_name': 'Soto',
       'price': 25000.0,
       'category': 'Makanan',
       'description': 'Kuah kaldu yang diisi dengan daging dan sayuran'
     },
-    {
-      'id': 7,
-      'photo': 'unsplash: Ayam Goreng',
-      'product_name': 'Ayam Goreng',
-      'price': 20000.0,
-      'category': 'Makanan',
-      'description': 'Potongan ayam yang digoreng dengan bumbu rempah'
-    },
-    {
-      'id': 8,
-      'photo': 'unsplash: Mie Goreng',
-      'product_name': 'Mie Goreng',
-      'price': 25000.0,
-      'category': 'Makanan',
-      'description': 'Mie yang digoreng dengan bumbu rempah dan sayuran'
-    },
-    {
-      'id': 9,
-      'photo': 'unsplash: Nasi Padang',
-      'product_name': 'Nasi Padang',
-      'price': 30000.0,
-      'category': 'Makanan',
-      'description': 'Nasi dengan lauk-pauk khas Padang'
-    },
-    {
-      "id": 10,
-      "photo": "unsplash: Es Campur",
-      "product_name": "Es Campur",
-      "price": 10000.0,
-      "category": "Minuman",
-      "description": "Es campur dengan aneka buah",
-    }
+    // {
+    //   'id': 7,
+    //   'photo': 'unsplash: Ayam Goreng',
+    //   'product_name': 'Ayam Goreng',
+    //   'price': 20000.0,
+    //   'category': 'Makanan',
+    //   'description': 'Potongan ayam yang digoreng dengan bumbu rempah'
+    // },
+    // {
+    //   'id': 8,
+    //   'photo': 'unsplash: Mie Goreng',
+    //   'product_name': 'Mie Goreng',
+    //   'price': 25000.0,
+    //   'category': 'Makanan',
+    //   'description': 'Mie yang digoreng dengan bumbu rempah dan sayuran'
+    // },
+    // {
+    //   'id': 9,
+    //   'photo': 'unsplash: Nasi Padang',
+    //   'product_name': 'Nasi Padang',
+    //   'price': 30000.0,
+    //   'category': 'Makanan',
+    //   'description': 'Nasi dengan lauk-pauk khas Padang'
+    // },
+    // {
+    //   "id": 10,
+    //   "photo": "unsplash: Es Campur",
+    //   "product_name": "Es Campur",
+    //   "price": 10000.0,
+    //   "category": "Minuman",
+    //   "description": "Es campur dengan aneka buah",
+    // }
   ];
-  generate() async {}
+  generate() async {
+    for (var item in productList) {
+      await ProductService().create(
+        photo: item['photo'],
+        productName: item['product_name'],
+        price: item['price'],
+        category: item['category'],
+        description: item['description'],
+      );
+    }
+  }
 }
