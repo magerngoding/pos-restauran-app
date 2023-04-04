@@ -3,6 +3,9 @@
     "modules": [
         "login",
         "product_list",
-        "product_form"
+        "product_form",
+        "table_list",
+        "pos_table",
+        "pos_order"
     ]
 }

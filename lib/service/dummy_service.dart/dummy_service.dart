@@ -1,4 +1,5 @@
 import 'package:hyper_ui/service/product_service/product_service.dart';
+import 'package:hyper_ui/service/table_service/table_service.dart';
 
 class DummyService {
   List<Map<String, dynamic>> productList = [
@@ -39,24 +40,24 @@ class DummyService {
       'category': 'Makanan',
       'description': 'Daging sapi yang dimasak dengan santan dan rempah-rempah'
     },
-    {
-      'id': 5,
-      'photo':
-          'https://w7.pngwing.com/pngs/480/301/png-transparent-food-dish-main-course-cuisine-garnish-western-recipes-recipe-cooking-snack-thumbnail.png',
-      'product_name': 'Gado-gado',
-      'price': 20000.0,
-      'category': 'Makanan',
-      'description': 'Sayuran segar yang disiram dengan saus kacang'
-    },
-    {
-      'id': 6,
-      'photo':
-          'https://w7.pngwing.com/pngs/480/301/png-transparent-food-dish-main-course-cuisine-garnish-western-recipes-recipe-cooking-snack-thumbnail.png',
-      'product_name': 'Soto',
-      'price': 25000.0,
-      'category': 'Makanan',
-      'description': 'Kuah kaldu yang diisi dengan daging dan sayuran'
-    },
+    // {
+    //   'id': 5,
+    //   'photo':
+    //       'https://w7.pngwing.com/pngs/480/301/png-transparent-food-dish-main-course-cuisine-garnish-western-recipes-recipe-cooking-snack-thumbnail.png',
+    //   'product_name': 'Gado-gado',
+    //   'price': 20000.0,
+    //   'category': 'Makanan',
+    //   'description': 'Sayuran segar yang disiram dengan saus kacang'
+    // },
+    // {
+    //   'id': 6,
+    //   'photo':
+    //       'https://w7.pngwing.com/pngs/480/301/png-transparent-food-dish-main-course-cuisine-garnish-western-recipes-recipe-cooking-snack-thumbnail.png',
+    //   'product_name': 'Soto',
+    //   'price': 25000.0,
+    //   'category': 'Makanan',
+    //   'description': 'Kuah kaldu yang diisi dengan daging dan sayuran'
+    // },
     // {
     //   'id': 7,
     //   'photo': 'unsplash: Ayam Goreng',
@@ -98,6 +99,18 @@ class DummyService {
         price: item['price'],
         category: item['category'],
         description: item['description'],
+      );
+    }
+  }
+
+  generateTables() async {
+    await TableService().deleteAll();
+    for (var i = 1; i <= 20; i++) {
+      await TableService().create(
+        orderIndex: i,
+        tableNumber: "$i",
+        // orderId: orderId,
+        // status: status,
       );
     }
   }

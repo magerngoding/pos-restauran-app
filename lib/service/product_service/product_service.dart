@@ -38,4 +38,8 @@ class ProductService {
       },
     );
   }
+
+  delete(String id) async {
+    await FirebaseFirestore.instance.collection("products").doc(id).delete();
+  }
 }

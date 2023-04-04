@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hyper_ui/core.dart';
-import 'package:hyper_ui/module/dashboard/widget/dashboardBannerImage.dart';
 
 class DashboardView extends StatefulWidget {
   const DashboardView({Key? key}) : super(key: key);
@@ -62,14 +61,14 @@ class DashboardView extends StatefulWidget {
                   {
                     "icon":
                         "https://cdn-icons-png.flaticon.com/128/3595/3595455.png",
-                    "label": "Pizza",
-                    "onTap": () {},
+                    "label": "Table",
+                    "onTap": () => Get.to(const TableListView()),
                   },
                   {
                     "icon":
                         "https://cdn-icons-png.flaticon.com/128/2718/2718224.png",
-                    "label": "Noodles",
-                    "onTap": () {},
+                    "label": "POS",
+                    "onTap": () => Get.to(const PosTableView()),
                   },
                   {
                     "icon":
