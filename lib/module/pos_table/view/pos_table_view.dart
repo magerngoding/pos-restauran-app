@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hyper_ui/core.dart';
-import '../controller/pos_table_controller.dart';
 
 class PosTableView extends StatefulWidget {
   const PosTableView({Key? key}) : super(key: key);
@@ -52,22 +51,33 @@ class PosTableView extends StatefulWidget {
                       if (used) {
                         color = Colors.red;
                       }
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: color,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              item['table_number'],
-                              style: const TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
+                      return InkWell(
+                        onTap: () {
+                          if (used) {
+                            showInfoDialog('Not available');
+                            return;
+                          }
+                          Get.to(PosOrderView(
+                            tableNumber: item['table_number'],
+                          ));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: color,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                item['table_number'],
+                                style: const TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       );
                     },
