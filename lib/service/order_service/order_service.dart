@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class OrderService {
   create({
@@ -9,6 +10,7 @@ class OrderService {
     required List items,
   }) async {
     await FirebaseFirestore.instance.collection("orders").add({
+      "owner_id": FirebaseAuth.instance.currentUser!.uid,
       'created_at': Timestamp.now(),
       'table_number': tableNumber,
       'items': items,
@@ -20,6 +22,7 @@ class OrderService {
     var snapshot = await FirebaseFirestore.instance
         .collection("tables")
         .where('table_number', isEqualTo: tableNumber)
+        .where('owner_id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .get();
     var tableDocId = snapshot.docs.first.id;
 

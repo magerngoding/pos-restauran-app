@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hyper_ui/core.dart';
-import 'package:hyper_ui/service/auth_service/auth_service.dart';
 
 class LoginController extends State<LoginView> implements MvcController {
   static late LoginController instance;
@@ -34,5 +33,17 @@ class LoginController extends State<LoginView> implements MvcController {
       showInfoDialog('Wrong username or password!');
     }
     hideLoading();
+  }
+
+  doGoogleLogin() async {
+    showLoading();
+    try {
+      await AuthService().googleLogin();
+      hideLoading();
+      Get.offAll(const MainNavigationView());
+    } on Exception {
+      hideLoading();
+      showInfoDialog('Wrong username or password!');
+    }
   }
 }
